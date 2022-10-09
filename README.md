@@ -66,8 +66,8 @@ In the second scenario, each test will first call `POST /api/todoitems` to store
 | Scenario 1 - POST          | 10 000       | 3s            |
 | Scenario 2 - POST then GET | 10 000       | 10s           |
 
-![scenario 1](Images/post.png)
-![scenario 2](Images/postandget.png)
+![scenario 1](Images/post.PNG)
+![scenario 2](Images/postandget.PNG)
 
 ## Drawbacks of less unit tests
 No documentation of expected behavior of internals through targeted tests.
