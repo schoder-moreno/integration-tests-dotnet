@@ -12,6 +12,7 @@ namespace TodoApi.IntegrationTests
         protected static HttpClient Api;
 
         protected static void InitializeApi() => Api = new WebApplicationFactoryWithInMemoryDb().CreateClient();
+
         protected async Task<int> PostTodoItem()
         {
             var todoItem = ValidTodoItem();
