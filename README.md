@@ -20,7 +20,7 @@ In this document, we take the different test levels to mean the following:
 ## Pyramids and other geometric shapes
 The traditional way of establishing your test suite is to follow the prescriptions of the [test pyramid](https://martinfowler.com/articles/practical-test-pyramid.html):
 
-![test pyramid](images/pyramid.png)
+![test pyramid](Images/pyramid.png)
 
 More unit tests, because they are faster to execute and cheaper to implement. Less E2E, because they are slower and more expensive.
 
@@ -41,7 +41,7 @@ Enter the world of ASP.NET Core. Where [`WebApplicationFactory`](https://learn.m
 
 This gives rise to a different shape, the [test trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications):
 
-![test trophy](images/trophy.jpg)
+![test trophy](Images/trophy.jpg)
 
 Even though it was originally created with frontend applications in mind, it can be applied to backend applications as well. 
 If you have the technology to run and write integration tests in a fast and cheap way you should prefer to do most of your testing at the integration level.
@@ -66,8 +66,8 @@ In the second scenario, each test will first call `POST /api/todoitems` to store
 | Scenario 1 - POST          | 10 000       | 3s            |
 | Scenario 2 - POST then GET | 10 000       | 10s           |
 
-![scenario 1](images/post.png)
-![scenario 2](images/postandget.png)
+![scenario 1](Images/post.png)
+![scenario 2](Images/postandget.png)
 
 ## Drawbacks of less unit tests
 No documentation of expected behavior of internals through targeted tests.
