@@ -1,4 +1,3 @@
-using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 
@@ -31,3 +30,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
