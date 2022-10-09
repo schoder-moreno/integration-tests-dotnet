@@ -16,23 +16,18 @@ namespace TodoApi.IntegrationTests
     [TestClass]
     public class TodoTests : TodoTestsBase
     {
-        protected static HttpClient HttpClient;
+        protected static HttpClient Api;
 
         [ClassInitialize]
-        public static void TodoTestsBase(TestContext tc)
-        {
-            var application = new WebApplicationFactoryWithInMemoryDb();
-
-            HttpClient = application.CreateClient();
-        }
+        public static void Setup(TestContext tc) => Api = new WebApplicationFactoryWithInMemoryDb().CreateClient();
 
         private async Task ExecuteTest()
         {
             // Arrange
-            var id = await PostTodoItem(HttpClient);
+            var id = await PostTodoItem(Api);
 
             // Act
-            var result = await GetTodoItem(HttpClient, id);
+            var result = await GetTodoItem(Api, id);
 
             // Assert
             Assert.IsNotNull(result);
