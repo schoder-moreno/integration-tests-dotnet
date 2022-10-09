@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 [assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
 namespace TodoApi.IntegrationTests
 {
+#nullable disable warnings
     public class TodoItemDTO
     {
         [JsonPropertyName("id")]
@@ -12,42 +13,26 @@ namespace TodoApi.IntegrationTests
         [JsonPropertyName("isComplete")]
         public bool IsComplete { get; set; }
     }
+#nullable enable warnings
 
     [TestClass]
     public class TodoTests : TodoTestsBase
     {
-        protected static HttpClient Api;
-
         [ClassInitialize]
-        public static void Setup(TestContext tc) => Api = new WebApplicationFactoryWithInMemoryDb().CreateClient();
+        public static void Setup(TestContext tc) => InitializeApi();
 
         private async Task ExecuteTest()
         {
             // Arrange
-            var id = await PostTodoItem(Api);
+            var id = await PostTodoItem();
 
             // Act
-            var result = await GetTodoItem(Api, id);
+            var result = await GetTodoItem(id);
 
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(id, result.Id);
         }
-
-        //[TestMethod]
-        //public void Write()
-        //{
-        //    var lines = new List<string>();
-
-        //    for (int i = 0; i < 10_000; i++)
-        //    {
-        //        lines.AddRange(new string[]{
-        //            "[TestMethod]", $"public async Task TestMethod{i}()", "{", "await ExecuteTest();", "}", ""
-        //            });
-        //    }
-
-        //    File.WriteAllLinesAsync("WriteLines.txt", lines).Wait();
-        //}
 
         [TestMethod]
         public async Task TestMethod0()
@@ -60049,8 +60034,19 @@ namespace TodoApi.IntegrationTests
             await ExecuteTest();
         }
 
+        //[TestMethod]
+        //public void WriteTestsToFile()
+        //{
+        //    var lines = new List<string>();
 
+        //    for (int i = 0; i < 10_000; i++)
+        //    {
+        //        lines.AddRange(new string[]{
+        //            "[TestMethod]", $"public async Task TestMethod{i}()", "{", "await ExecuteTest();", "}", ""
+        //            });
+        //    }
 
-
+        //    File.WriteAllLinesAsync("WriteLines.txt", lines).Wait();
+        //}
     }
 }

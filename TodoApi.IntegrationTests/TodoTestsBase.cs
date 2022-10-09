@@ -9,14 +9,17 @@ namespace TodoApi.IntegrationTests
 {
     public abstract class TodoTestsBase
     {
-        protected async Task<int> PostTodoItem(HttpClient client)
+        protected static HttpClient Api;
+
+        protected static void InitializeApi() => Api = new WebApplicationFactoryWithInMemoryDb().CreateClient();
+        protected async Task<int> PostTodoItem()
         {
             var todoItem = ValidTodoItem();
 
-            var response = await client.PostAsJsonAsync("/api/todoitems", todoItem);
+            var response = await Api.PostAsJsonAsync("/api/todoitems", todoItem);
             var result = await response.Content.ReadFromJsonAsync<TodoItemDTO>();
 
-            return result.Id!;
+            return result!.Id;
         }
 
         private static TodoItemDTO ValidTodoItem() => new TodoItemDTO()
@@ -26,10 +29,10 @@ namespace TodoApi.IntegrationTests
             IsComplete = true
         };
 
-        protected async Task<TodoItemDTO> GetTodoItem(HttpClient client, int id)
+        protected async Task<TodoItemDTO> GetTodoItem(int id)
         {
-            var response = await client.GetAsync($"/api/todoitems/{id}");
-            return await response.Content.ReadFromJsonAsync<TodoItemDTO>()!;
+            var response = await Api.GetAsync($"/api/todoitems/{id}");
+            return await response.Content.ReadFromJsonAsync<TodoItemDTO>();
         }
     }
 
