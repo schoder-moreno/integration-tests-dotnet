@@ -4,7 +4,7 @@
 Integration tests in ASP.NET Core are fast. **A large chunk of your unit tests could probably have been integration tests instead.**
 
 To demonstrate that integration tests can run at speeds comparable to unit tests, we run 10 000 integration tests against a basic ASP.NET Core web api. 
-The test scenarios execute very fast. The tests themselves are easy to write and understand.
+The test scenarios execute very fast, indicating that the limiting factor is the application performance rather than overhead in the testing framework. The tests themselves are easy to write and understand.
 
 | Scenario                                 | No. of tests | Test run time |
 |------------------------------------------|--------------|---------------|
